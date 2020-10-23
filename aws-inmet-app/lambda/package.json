@@ -1,0 +1,22 @@
+{
+  "name": "lambda",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "deploy": "sls deploy --v",
+    "undeploy": "sls remove",
+    "test": "sls invoke local --function fetch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "serverless": "^2.8.0"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.775.0",
+    "axios": "^0.20.0",
+    "node-datetime": "^2.1.2"
+  }
+}

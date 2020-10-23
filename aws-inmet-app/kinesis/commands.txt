@@ -1,0 +1,5 @@
+// install at cluster
+pip3 install boto3 requests --user
+
+// add step
+aws emr add-steps --cluster-id j-2IKIPSIKYSPBZ --steps Type=Spark,Name="Spark Inmet",ActionOnFailure=CONTINUE,Args=[--conf,spark.dynamicAllocation.enabled=false,--jars,s3://aws-inmet-app/elasticsearch-hadoop-6.4.3.jar,--packages,org.apache.spark:spark-streaming-kinesis-asl_2.11:2.4.0,s3://aws-inmet-app/kinesis_spark.py,kinesis_spark.py,aws-inmet-stream,https://kinesis.us-east-1.amazonaws.com,us-east-1] --region=us-east-1

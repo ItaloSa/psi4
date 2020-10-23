@@ -1,0 +1,33 @@
+service: aws-inmet-app
+
+provider:
+  name: aws
+  stage: ${opt:stage, 'dev'}
+  runtime: nodejs12.x
+  memorySize: 512
+  timeout: 30
+  region: us-east-1
+  environment:
+    STAGE: ${self:provider.stage}
+    REGION: ${self:provider.region}
+    TZ: 'America/Sao_Paulo'
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - kinesis:*
+        - sqs:*
+      Resource: '*'
+
+functions:
+  fetch:
+    handler: index.fetch
+    events: 
+      - http:
+          path: start
+          method: get
+    
+package:
+  exclude:
+    - package-lock.json
+    - .vscode/**
+    - .serverless/**
